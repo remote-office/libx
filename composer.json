@@ -1,0 +1,14 @@
+{
+    "name": "libx/libx",
+    "description": "LibX",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Betgen",
+            "email": "d.betgen@remote-office.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
