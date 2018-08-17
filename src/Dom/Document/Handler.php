@@ -1,5 +1,7 @@
 <?php
 
+  namespace LibX\Dom\Document;
+
   // LibX dom
   use LibX\Dom\Document;
   use LibX\Dom\Node;

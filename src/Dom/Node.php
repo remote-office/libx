@@ -1,5 +1,7 @@
 <?php
 
+  namespace LibX\Dom;
+
   /**
    * Node
    *
