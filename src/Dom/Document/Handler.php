@@ -4,7 +4,8 @@
 
   // LibX dom
   use LibX\Dom\Document;
-  use LibX\Dom\Node;
+
+  use DOMNode;
 
   /**
    * Handler
@@ -333,7 +334,7 @@
      * Get the internal document
      *
      * @param void
-     * @return LibXDocument
+     * @return Document
      */
     public function getDocument()
     {

@@ -2,6 +2,8 @@
 
   namespace LibX\Dom;
 
+  use DOMNode;
+
   /**
    * Node
    *
