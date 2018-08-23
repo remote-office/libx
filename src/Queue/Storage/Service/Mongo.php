@@ -55,7 +55,7 @@
         $document = array_pop($documents);
 
         // Remove from collection
-        $collection->deleteOne(['_id' => $document['_id']]);
+        $collection->deleteOne(['_id' => $document->_id]);
 
         $data = $document->data;
 
