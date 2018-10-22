@@ -2,6 +2,9 @@
 
   namespace LibX\Net\Rest;
 
+  use Exception;
+  use InvalidArgumentException;
+  
   /**
   * Class Request
   *
@@ -84,7 +87,7 @@
         throw new Exception(__METHOD__ . '; No headers');
 
       // Search headers
-      foreach($headers as $header)
+      foreach($this->headers as $header)
       {
         if(stripos($header, $name) === 0)
           return trim(substr($header, strlen($name) + 1));
@@ -105,7 +108,7 @@
         throw new Exception(__METHOD__ . '; No headers');
 
       // Search headers
-      foreach($headers as $header)
+      foreach($this->headers as $header)
       {
         if(stripos($header, $name) === 0)
           return true;

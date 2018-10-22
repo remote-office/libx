@@ -18,7 +18,7 @@
      * Return an instance of a LibX\Net\Rest\Client with a specific label
      *
      * @param string $label
-     * @return LibX\Net\Rest\Client
+     * @return \LibX\Net\Rest\Client
      */
     public static function getInstance($label = 'default')
     {

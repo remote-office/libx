@@ -2,15 +2,6 @@
 
   namespace LibX\SimplePay;
   
-  use LibX\SimplePay\Provider;
-  use LibX\SimplePay\Transaction;
-  use LibX\SimplePay\Status;
-  
-  use LibX\SimplePay\User;
-  use LibX\SimplePay\Payment;
-  use LibX\SimplePay\Callback;
-  use LibX\SimplePay\Authenticator;
-  
   use LibX\SimplePay\Request\ProviderRequest;
   use LibX\SimplePay\Request\TransactionRequest;
   use LibX\SimplePay\Request\StatusRequest;
