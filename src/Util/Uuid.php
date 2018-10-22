@@ -3,7 +3,7 @@
   namespace LibX\Util;
 
   use InvalidArgumentException;
-  
+
 	/**
 	 * Uuid
 	 *
@@ -95,24 +95,5 @@
 			return strtolower(sprintf('%s-%s-%s-%s-%s', substr($base, 0, 8),	substr($base, 8, 4), substr($base, 12, 4), substr($base, 16, 4), substr($base, 20, 12)));
 		}
 	}
-
-	/**
-   * Class UuidStack
-   *
-   * @author David Betgen <d.betgen@remote-office.nl>
-   * @version 1.0
-   */
-  class UuidStack extends Stack
-  {
-    public function push(Uuid $uuid)
-    {
-      return array_push($this->array, $uuid);
-    }
-
-    public function pop()
-    {
-      return array_pop($this->array);
-    }
-  }
 
 ?>

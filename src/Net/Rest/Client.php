@@ -91,7 +91,7 @@
 
       // Call request method handler
       call_user_func(array($this, strtolower($method)),  $handle, $request, $response);
-      
+
       // Execute curl request
       curl_exec($handle);
 
@@ -100,7 +100,7 @@
 
       // Set info
       $response->setInfo($info);
-      
+
       // Close curl handler
       if(!is_null($handle) && is_resource($handle))
         curl_close($handle);
@@ -162,15 +162,13 @@
         // Set read callback
         curl_setopt($handle, CURLOPT_READFUNCTION, array(&$response, 'read'));
         curl_setopt($handle, CURLOPT_INFILE, $request->getResource());
-        curl_setopt($handle, CURLOPT_PUT, true);
+
+        // Set PUT
+        curl_setopt($handle, CURLOPT_CUSTOMREQUEST, 'PUT');
       }
       else
-      {        
-        //curl_setopt($handle, CURLOPT_CUSTOMREQUEST, 'PUT');
-        //curl_setopt($handle, CURLOPT_INFILESIZE, 0);
-        //curl_setopt($handle, CURLOPT_NOBODY, 1);
-
-        /*if(!$request->hasParameters() && !$request->hasData())
+      {
+        if(!$request->hasParameters() && !$request->hasData())
           throw new InvalidArgumentException(__METHOD__ . '; Invalid request parameters or data for PUT method, must be an array or string');
 
         // Build http query
@@ -179,24 +177,22 @@
         elseif($request->hasData())
           $data = $request->getData();
 
-        // Set PUT
-        curl_setopt($handle, CURLOPT_CUSTOMREQUEST, 'PUT');
-
         // Set write callback
         curl_setopt($handle, CURLOPT_WRITEFUNCTION, array(&$response, 'write'));
 
         curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($handle, CURLOPT_PUT, true);*/
-        
-        // Set write callback
-        curl_setopt($handle, CURLOPT_WRITEFUNCTION, array(&$response, 'write'));
-        
-        curl_setopt($handle, CURLOPT_PUT, true);
+        //curl_setopt($handle, CURLOPT_PUT, true);
+
+        // Set PUT
+        curl_setopt($handle, CURLOPT_CUSTOMREQUEST, 'PUT');
       }
     }
 
     protected function delete($handle, Request $request, Response $response)
     {
+      // Set write callback
+      curl_setopt($handle, CURLOPT_WRITEFUNCTION, array(&$response, 'write'));
+
       if($request->hasParameters())
       {
         // Build http query

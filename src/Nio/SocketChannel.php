@@ -1,6 +1,6 @@
 <?php
 
-  namespace LibX;
+  namespace LibX\Nio;
 
   class SocketChannel extends Channel
   {
