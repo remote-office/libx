@@ -2,6 +2,7 @@
 
   namespace LibX\Net\Rest;
 
+  use Exception;
   use InvalidArgumentException;
 
   /**

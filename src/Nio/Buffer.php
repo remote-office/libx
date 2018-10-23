@@ -1,7 +1,7 @@
 <?php
 
   namespace LibX\Nio;
-
+  
   /**
    * Class Buffer
    *

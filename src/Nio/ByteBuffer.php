@@ -1,5 +1,5 @@
 <?php
-
+  
   namespace LibX\Nio;
 
   /**

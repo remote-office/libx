@@ -2,6 +2,8 @@
 
   namespace LibX\Http\Uri;
 
+  use InvalidArgumentException;
+  
   class Uri implements UriInterface
   {
     protected $scheme;   // Uri scheme.
