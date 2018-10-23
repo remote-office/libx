@@ -1,11 +1,11 @@
 <?php
 
-  namespace LibX\SimplePay\Account;
-  
-  use LibX\SimplePay\Account;
-  
+  namespace LibX\External\SimplePay\Account;
+
+  use LibX\External\SimplePay\Account;
+
   use InvalidArgumentException;
-  
+
   /**
    * CreditCard
    *
@@ -18,7 +18,7 @@
     protected $number;
     protected $experationDate;
     protected $code;
-    
+
     /**
      * Construct a CreditCard
      *
@@ -33,7 +33,7 @@
       $this->setHolder($holder);
       $this->setNumber($number);
     }
-    
+
     /**
      * Get the holder of this CreditCard
      *
@@ -44,7 +44,7 @@
     {
       return $this->holder;
     }
-    
+
     /**
      * Set the holder of this CreditCard
      *
@@ -55,10 +55,10 @@
     {
       if(!is_string($holder) || strlen(trim($holder)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid holder, must be a non empty string');
-        
+
       $this->holder = $holder;
     }
-    
+
     /**
      * Get the number of this CreditCard
      *
@@ -69,7 +69,7 @@
     {
       return $this->number;
     }
-    
+
     /**
      * Set the number of this CreditCard
      *
@@ -80,7 +80,7 @@
     {
       if(!is_string($number) || strlen(trim($number)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid number, must be a non empty string');
-        
+
       $this->number = $number;
     }
   }

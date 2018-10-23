@@ -1,12 +1,12 @@
 <?php
 
-  namespace LibX\SimplePay\Request;
+  namespace LibX\External\SimplePay\Request;
 
-  use LibX\SimplePay\Request;
-  use LibX\SimplePay\User;
-  
+  use LibX\External\SimplePay\Request;
+  use LibX\External\SimplePay\User;
+
   use InvalidArgumentException;
-  
+
 	/**
 	 * ProviderRequest
 	 *

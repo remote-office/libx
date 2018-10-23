@@ -90,6 +90,16 @@
       $neighbourhood = $document->buurtnaam;
       $street = $document->straatnaam;
       $number = $document->huisnummer;
+
+      if(isset($document->huisnummertoevoeging) && isset($document->huisletter))
+        $addition = $document->huisnummertoevoeging . $document->huisletter;
+      elseif(isset($document->huisnummertoevoeging))
+        $addition = $document->huisnummertoevoeging;
+      elseif(isset($document->huisletter))
+        $addition = $document->huisletter;
+      else
+        $addition = null;
+
       $zipcode = $document->postcode;
 
       if($document->bron === 'BAG')
@@ -98,6 +108,7 @@
         $address->setId($document->id);
         $address->setStateCode($document->provinciecode);
         $address->setMunicipalityCode($document->gemeentecode);
+        $address->setCityCode($document->woonplaatscode);
         $address->setAreaCode($document->wijkcode);
         $address->setNeighbourhoodCode($document->buurtcode);
         $address->setPublicSpaceId($document->openbareruimte_id);
@@ -109,7 +120,7 @@
         $address = new \LibX\Util\Address();
       }
 
-      //$address->setCountry($country);
+      $address->setCountry('Nederland');
       $address->setState($state);
       $address->setMunicipality($municipality);
       $address->setCity($city);
@@ -117,7 +128,7 @@
       $address->setNeighbourhood($neighbourhood);
       $address->setStreet($street);
       $address->setNumber($number);
-      //$address->setAddition($addition);
+      $address->setAddition($addition);
       $address->setZipcode($zipcode);
 
       return $address;

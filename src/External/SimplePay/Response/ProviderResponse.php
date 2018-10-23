@@ -1,11 +1,11 @@
 <?php
 
-  namespace LibX\SimplePay\Response;
-  
-  use LibX\SimplePay\Response;
-  use LibX\SimplePay\Provider;
-  use LibX\SimplePay\ProviderStack;
-  
+  namespace LibX\External\SimplePay\Response;
+
+  use LibX\External\SimplePay\Response;
+  use LibX\External\SimplePay\Provider;
+  use LibX\External\SimplePay\ProviderStack;
+
   /**
    * ProviderResponse
    *
@@ -15,7 +15,7 @@
   class ProviderResponse extends Response
   {
     protected $providerStack;
-    
+
     /**
      * Construct a new ProviderResponse
      *
@@ -26,7 +26,7 @@
     {
       $this->providerStack = new ProviderStack();
     }
-    
+
     /**
      * Add a bank to the webservice ideal bank stack
      *
@@ -37,7 +37,7 @@
     {
       $this->providerStack->push($provider);
     }
-    
+
     /**
      * Get the provider stack of this ProviderResponse
      *
@@ -48,7 +48,7 @@
     {
       return $this->providerStack;
     }
-    
+
     /**
      * Set the provider stack of this ProviderResponse
      *

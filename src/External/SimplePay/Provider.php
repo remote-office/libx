@@ -1,9 +1,9 @@
 <?php
-  
-  namespace LibX\SimplePay;
+
+  namespace LibX\External\SimplePay;
 
   use LibX\Util\Uuid;
-  
+
   use InvalidArgumentException;
 
   /**
@@ -19,11 +19,11 @@
     const TYPE_IDEAL         = 'ideal';
     const TYPE_CREDITCARD    = 'creditcard';
     const TYPE_PREPAID       = 'prepaid';
-    
+
     protected $uuid;
     protected $name;
     protected $type;
-    
+
     /**
      * Construct a new Provider
      *
@@ -38,7 +38,7 @@
       $this->setName($name);
       $this->setType($type);
     }
-    
+
     /**
      * Get uuid of this Provider
      *
@@ -49,7 +49,7 @@
     {
       return $this->uuid;
     }
-    
+
     /**
      * Set uuid of this Provider
      *
@@ -60,7 +60,7 @@
     {
       $this->uuid = $uuid;
     }
-    
+
     /**
      * Get name of this Provider
      *
@@ -71,7 +71,7 @@
     {
       return $this->name;
     }
-    
+
     /**
      * Set name of this Provider
      *
@@ -82,10 +82,10 @@
     {
       if(!is_string($name) || strlen(trim($name)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid name, must be a non empty string');
-        
+
       $this->name = $name;
     }
-    
+
     /**
      * Get name of this Provider
      *
@@ -96,7 +96,7 @@
     {
       return $this->type;
     }
-    
+
     /**
      * Set type of this Provider
      *
@@ -107,9 +107,9 @@
     {
       if(!is_string($type) || strlen(trim($type)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid type, must be a non empty string');
-        
+
       $this->type = $type;
     }
   }
-  
+
 ?>

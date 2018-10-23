@@ -1,9 +1,9 @@
 <?php
 
-  namespace LibX\SimplePay;
-  
+  namespace LibX\External\SimplePay;
+
   use InvalidArgumentException;
-  
+
   /**
    * Payment
    *
@@ -15,13 +15,13 @@
     // Currency
     const CURRENCY_EURO    = 'EUR';
     const CURRENCY_DOLLAR  = 'USD';
-    
+
     protected $reference;
     protected $amount;
     protected $currency;
     protected $description;
     protected $account;
-    
+
     /**
      * Construct a new Payment
      *
@@ -37,14 +37,14 @@
       $this->setReference($reference);
       $this->setAmount($amount);
       $this->setCurrency($currency);
-      
+
       if(!is_null($description))
         $this->setDescription($description);
-        
+
       if(!is_null($account))
         $this->setAccount($account);
     }
-    
+
     /**
      * Get reference of this Payment
      *
@@ -55,7 +55,7 @@
     {
       return $this->reference;
     }
-    
+
     /**
      * Set reference of this Payment
      *
@@ -66,10 +66,10 @@
     {
       if(!is_string($reference) || strlen(trim($reference)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid reference, must be a non empty string');
-        
+
       $this->reference = $reference;
     }
-    
+
     /**
      * Get amount of this Payment
      *
@@ -80,7 +80,7 @@
     {
       return $this->amount;
     }
-    
+
     /**
      * Set amount of this Payment
      *
@@ -91,10 +91,10 @@
     {
       if(!is_int($amount) || $amount < 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid amount, must be a positive integer');
-        
+
       $this->amount = $amount;
     }
-    
+
     /**
      * Get currency of this Payment
      *
@@ -105,7 +105,7 @@
     {
       return $this->currency;
     }
-    
+
     /**
      * Set currency of this Payment
      *
@@ -116,10 +116,10 @@
     {
       if(!is_string($currency) || strlen(trim($currency)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid currency, must be a non empty string');
-        
+
       $this->currency = $currency;
     }
-    
+
     /**
      * Check if this Payment has a description
      *
@@ -130,7 +130,7 @@
     {
       return !is_null($this->description);
     }
-    
+
     /**
      * Get description of this Payment
      *
@@ -141,7 +141,7 @@
     {
       return $this->description;
     }
-    
+
     /**
      * Set description of this Payment
      *
@@ -152,10 +152,10 @@
     {
       if(!is_string($description) || strlen(trim($description)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid description, must be a non empty string');
-        
+
       $this->description = $description;
     }
-    
+
     /**
      * Check if this Payment has an account
      *
@@ -166,7 +166,7 @@
     {
       return !is_null($this->account);
     }
-    
+
     /**
      * Get account of this Payment
      *
@@ -177,7 +177,7 @@
     {
       return $this->account;
     }
-    
+
     /**
      * Set account of this Payment
      *

@@ -1,11 +1,11 @@
 <?php
 
-  namespace LibX\SimplePay;
+  namespace LibX\External\SimplePay;
 
   use InvalidArgumentException;
-  
+
   use LibX\Util\Uuid;
-  
+
   /**
    * User
    *
@@ -16,7 +16,7 @@
   {
     protected $uuid;
     protected $hash;
-    
+
     /**
      * Construct a new User
      *
@@ -29,7 +29,7 @@
       $this->setUuid($uuid);
       $this->setHash($hash);
     }
-    
+
     /**
      * Get uuid of this User
      *
@@ -40,7 +40,7 @@
     {
       return $this->uuid;
     }
-    
+
     /**
      * Set uuid of this User
      *
@@ -51,7 +51,7 @@
     {
       $this->uuid = $uuid;
     }
-    
+
     /**
      * Get hash of this User
      *
@@ -62,7 +62,7 @@
     {
       return $this->hash;
     }
-    
+
     /**
      * Set hash of this User
      *
@@ -73,7 +73,7 @@
     {
       if(!is_string($hash) || strlen(trim($hash)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid hash, must be a non empty string');
-        
+
       $this->hash = $hash;
     }
   }

@@ -1,10 +1,10 @@
 <?php
 
-  namespace LibX\SimplePay\Account;
-  
-  use LibX\SimplePay\Account;
+  namespace LibX\External\SimplePay\Account;
+
+  use LibX\External\SimplePay\Account;
   use LibX\Util\Uuid;
-  
+
   /**
    * PrepaidAccount
    *
@@ -14,7 +14,7 @@
   class PrepaidAccount extends Account
   {
     protected $uuid;
-    
+
     /**
      * Construct a PrepaidAccount
      *
@@ -25,7 +25,7 @@
     {
       $this->setUuid($uuid);
     }
-    
+
     /**
      * Get uuid of this PrepaidAccount
      *
@@ -36,7 +36,7 @@
     {
       return $this->uuid;
     }
-    
+
     /**
      * Set uuid of this PrepaidAccount
      *
@@ -48,5 +48,5 @@
       $this->uuid = $uuid;
     }
   }
-  
+
 ?>

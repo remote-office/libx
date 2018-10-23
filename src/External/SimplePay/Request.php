@@ -1,7 +1,7 @@
 <?php
 
-  namespace LibX\SimplePay;
-  
+  namespace LibX\External\SimplePay;
+
   /**
    * Request
    *
@@ -11,7 +11,7 @@
   class Request
   {
     protected $user;
-    
+
     /**
      * Construct a new Request
      *
@@ -22,7 +22,7 @@
     {
       $this->setUser($user);
     }
-    
+
     /**
      * Get user of this Request
      *
@@ -33,7 +33,7 @@
     {
       return $this->user;
     }
-    
+
     /**
      * Set user of this Request
      *
@@ -45,5 +45,5 @@
       $this->user = $user;
     }
   }
-  
+
 ?>

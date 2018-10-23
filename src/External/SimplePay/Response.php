@@ -1,7 +1,7 @@
 <?php
 
-  namespace LibX\SimplePay;
-  
+  namespace LibX\External\SimplePay;
+
   class Response
   {
     /**
@@ -14,5 +14,5 @@
     {
     }
   }
-  
+
 ?>

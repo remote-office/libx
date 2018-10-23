@@ -1,11 +1,11 @@
 <?php
 
-  namespace LibX\SimplePay\Account;
-  
-  use LibX\SimplePay\Account;
-  
+  namespace LibX\External\SimplePay\Account;
+
+  use LibX\External\SimplePay\Account;
+
   use InvalidArgumentException;
-  
+
   /**
    * Incasso
    *
@@ -17,7 +17,7 @@
     protected $holder;
     protected $number;
     protected $city;
-    
+
     /**
      * Construct a IncassoAccount
      *
@@ -32,7 +32,7 @@
       $this->setNumber($number);
       $this->setCity($city);
     }
-    
+
     /**
      * Get the holder of this IncassoAccount
      *
@@ -43,7 +43,7 @@
     {
       return $this->holder;
     }
-    
+
     /**
      * Set the holder of this IncassoAccount
      *
@@ -54,10 +54,10 @@
     {
       if(!is_string($holder) || strlen(trim($holder)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid holder, must be a non empty string');
-        
+
       $this->holder = $holder;
     }
-    
+
     /**
      * Get the number of this IncassoAccount
      *
@@ -68,7 +68,7 @@
     {
       return $this->number;
     }
-    
+
     /**
      * Set the number of this IncassoAccount
      *
@@ -79,10 +79,10 @@
     {
       if(!is_string($number) || strlen(trim($number)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid number, must be a non empty string');
-        
+
       $this->number = $number;
     }
-    
+
     /**
      * Get the city of this IncassoAccount
      *
@@ -93,7 +93,7 @@
     {
       return $this->city;
     }
-    
+
     /**
      * Set the city of this IncassoAccount
      *
@@ -104,9 +104,9 @@
     {
       if(!is_string($city) || strlen(trim($city)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid city, must be a non empty string');
-        
+
       $this->city = $city;
     }
   }
-  
+
 ?>

@@ -13,6 +13,7 @@
     protected $id;
     protected $stateCode;
     protected $municipalityCode;
+    protected $cityCode;
     protected $areaCode;
     protected $neighbourhoodCode;
 
@@ -68,6 +69,21 @@
     public function hasMunicipalityCode()
     {
       return !is_null($this->municipalityCode);
+    }
+
+    public function getCityCode()
+    {
+      return $this->cityCode;
+    }
+
+    public function setCityCode($cityCode)
+    {
+      $this->cityCode = $cityCode;
+    }
+
+    public function hasCityCode()
+    {
+      return !is_null($this->cityCode);
     }
 
     public function getAreaCode()

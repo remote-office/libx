@@ -1,9 +1,9 @@
 <?php
-  
-  namespace LibX\SimplePay\Account;
-  
-  use LibX\SimplePay\Account;
-  
+
+  namespace LibX\External\SimplePay\Account;
+
+  use LibX\External\SimplePay\Account;
+
   /**
    * Ideal
    *

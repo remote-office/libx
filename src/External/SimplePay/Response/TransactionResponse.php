@@ -1,10 +1,10 @@
 <?php
 
-  namespace LibX\SimplePay\Response;
-  
-  use LibX\SimplePay\Response;
-  use LibX\SimplePay\Authenticator;
-  
+  namespace LibX\External\SimplePay\Response;
+
+  use LibX\External\SimplePay\Response;
+  use LibX\External\SimplePay\Authenticator;
+
   use LibX\Util\Uuid;
 
   /**
@@ -17,7 +17,7 @@
   {
     protected $transaction;
     protected $redirect;
-    
+
     /**
      * Construct a new TransactionResponse
      *
@@ -30,7 +30,7 @@
       $this->setTransaction($transaction);
       $this->setAuthenticator($authenticator);
     }
-    
+
     /**
      * Get transaction of this TransactionResponse
      *
@@ -41,7 +41,7 @@
     {
       return $this->transaction;
     }
-    
+
     /**
      * Set transaction of this TransactionResponse
      *
@@ -52,7 +52,7 @@
     {
       $this->transaction = $transaction;
     }
-    
+
     /**
      * Get authenticator of this TransactionResponse
      *
@@ -63,7 +63,7 @@
     {
       return $this->authenticator;
     }
-    
+
     /**
      * Set authenticator of this TransactionResponse
      *

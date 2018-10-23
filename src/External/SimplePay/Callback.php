@@ -1,7 +1,7 @@
 <?php
 
-  namespace LibX\SimplePay;
-  
+  namespace LibX\External\SimplePay;
+
   /**
    * Callback
    *
@@ -12,7 +12,7 @@
   {
     protected $redirectUrl;
     protected $callbackUrl;
-    
+
     /**
      * Construct a Callback
      *
@@ -25,7 +25,7 @@
       $this->setRedirectUrl($redirectUrl);
       $this->setCallbackUrl($callbackUrl);
     }
-    
+
     /**
      * Get the redirect url of this Callback
      *
@@ -36,7 +36,7 @@
     {
       return $this->redirectUrl;
     }
-    
+
     /**
      * Set the redirect url of this Callback
      *
@@ -47,7 +47,7 @@
     {
       $this->redirectUrl = $redirectUrl;
     }
-    
+
     /**
      * Get the callback url of this Callback
      *
@@ -58,7 +58,7 @@
     {
       return $this->callbackUrl;
     }
-    
+
     /**
      * Set the callback url of this Callback
      *

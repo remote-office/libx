@@ -1,11 +1,11 @@
 <?php
 
-  namespace LibX\SimplePay\Response;
+  namespace LibX\External\SimplePay\Response;
 
-  use LibX\SimplePay\Response;
-  use LibX\SimplePay\Transaction;
-  use LibX\SimplePay\Payment;
-  
+  use LibX\External\SimplePay\Response;
+  use LibX\External\SimplePay\Transaction;
+  use LibX\External\SimplePay\Payment;
+
   /**
    * Status
    *
@@ -16,7 +16,7 @@
   {
     protected $transaction;
     protected $payment;
-    
+
     /**
      * Construct a new StatusResponse
      *
@@ -29,7 +29,7 @@
       $this->setTransaction($transaction);
       $this->setPayment($payment);
     }
-    
+
     /**
      * Get transaction of this StatusResponse
      *
@@ -40,7 +40,7 @@
     {
       return $this->transaction;
     }
-    
+
     /**
      * Set transaction of this StatusResponse
      *
@@ -51,7 +51,7 @@
     {
       $this->transaction = $transaction;
     }
-    
+
     /**
      * Get the payment of this StatusResponse
      *
@@ -62,7 +62,7 @@
     {
       return $this->payment;
     }
-    
+
     /**
      * Set the payment of this StatusResponse
      *

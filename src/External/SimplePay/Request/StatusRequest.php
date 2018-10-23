@@ -1,12 +1,12 @@
 <?php
 
-  namespace LibX\SimplePay\Request;
-  
-  use LibX\SimplePay\Request;
-  use LibX\SimplePay\User;
-  
+  namespace LibX\External\SimplePay\Request;
+
+  use LibX\External\SimplePay\Request;
+  use LibX\External\SimplePay\User;
+
   use LibX\Util\Uuid;
-  
+
   /**
    * StatusRequest
    *
@@ -16,7 +16,7 @@
   class StatusRequest extends Request
   {
     protected $transaction;
-    
+
     /**
      * Construct a new StatusRequest
      *
@@ -29,7 +29,7 @@
       $this->setUser($user);
       $this->setTransaction($transaction);
     }
-    
+
     /**
      * Get transaction uuid of this StatusRequest
      *
@@ -40,7 +40,7 @@
     {
       return $this->transaction;
     }
-    
+
     /**
      * Set transaction uuid of this StatusRequest
      *

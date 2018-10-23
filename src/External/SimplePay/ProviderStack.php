@@ -1,7 +1,7 @@
 <?php
 
-  namespace LibX\SimplePay;
-  
+  namespace LibX\External\SimplePay;
+
   use LibX\Util\Stack;
 
   /**
@@ -22,7 +22,7 @@
     {
       array_push($this->array, $provider);
     }
-    
+
     /**
      * Pop a Provider from the ProviderStack
      *

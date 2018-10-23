@@ -1,9 +1,9 @@
 <?php
 
-  namespace LibX\SimplePay;
+  namespace LibX\External\SimplePay;
 
   use InvalidArgumentException;
-  
+
   use LibX\Util\Uuid;
 
   /**
@@ -17,7 +17,7 @@
     protected $uuid;
     protected $name;
     protected $authenticationUrl;
-    
+
     /**
      * Construct a new Authenticator
      *
@@ -32,7 +32,7 @@
       $this->setName($name);
       $this->setAuthenticationUrl($authenticationUrl);
     }
-    
+
     /**
      * Get uuid of this Authenticator
      *
@@ -43,7 +43,7 @@
     {
       return $this->uuid;
     }
-    
+
     /**
      * Set uuid of this Authenticator
      *
@@ -54,7 +54,7 @@
     {
       $this->uuid = $uuid;
     }
-    
+
     /**
      * Get name of this Authenticator
      *
@@ -65,7 +65,7 @@
     {
       return $this->name;
     }
-    
+
     /**
      * Set name of this Authenticator
      *
@@ -76,10 +76,10 @@
     {
       if(!is_string($name) || strlen(trim($name)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid name, must be a non empty string');
-        
+
       $this->name = $name;
     }
-    
+
     /**
      * Get authentication url of this Authenticator
      *
@@ -90,7 +90,7 @@
     {
       return $this->authenticationUrl;
     }
-    
+
     /**
      * Set authentication url of this Authenticator
      *
@@ -101,7 +101,7 @@
     {
       if(!is_string($authenticationUrl) || strlen(trim($authenticationUrl)) == 0)
         throw new InvalidArgumentException(__METHOD__ . '; Invalid authentication url, must be a non empty string');
-        
+
       $this->authenticationUrl = $authenticationUrl;
     }
   }

@@ -1,6 +1,6 @@
 <?php
 
-  namespace LibX\SimplePay;
+  namespace LibX\External\SimplePay;
 
   use LibX\Util\Uuid;
 
@@ -18,10 +18,10 @@
     const STATUS_EXPIRED    = 'expired';
     const STATUS_FAILED     = 'failed';
     const STATUS_SUCCESS    = 'success';
-    
+
     protected $uuid;
     protected $status;
-    
+
     /**
      * Construct a Transaction
      *
@@ -34,7 +34,7 @@
       $this->setUuid($uuid);
       $this->setStatus($status);
     }
-    
+
     /**
      * Get uuid of this Transaction
      *
@@ -45,7 +45,7 @@
     {
       return $this->uuid;
     }
-    
+
     /**
      * Set uuid of this Transaction
      *
@@ -56,7 +56,7 @@
     {
       $this->uuid = $uuid;
     }
-    
+
     /**
      * Get status of this Transaction
      *
@@ -67,7 +67,7 @@
     {
       return $this->status;
     }
-    
+
     /**
      * Set status of this Transaction
      *

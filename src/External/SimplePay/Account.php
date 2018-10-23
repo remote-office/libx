@@ -1,6 +1,6 @@
 <?php
 
-  namespace LibX\SimplePay;
+  namespace LibX\External\SimplePay;
 
   /**
    * Account

@@ -58,7 +58,11 @@ use LibX\Util\Polygon;
       $data = $this->call($request, $response);
 
       $indications = $data->_embedded->nummeraanduidingen;
-      $indication = array_pop($indications);
+
+      foreach($indications as $indication)
+      {
+
+      }
     }
 
     /**
@@ -91,7 +95,7 @@ use LibX\Util\Polygon;
       // Create a REST response
       $response = new \LibX\Net\Rest\Response();
 
-      // No working at the moment
+      // Not working at the moment
       return;
 
       // Make the call
@@ -118,7 +122,8 @@ use LibX\Util\Polygon;
       // Make the call
       $data = $this->call($request, $response);
 
-      return $data->_embedded;
+      //return $data->_embedded;
+      return $data;
     }
 
     /**

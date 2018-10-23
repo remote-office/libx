@@ -1,12 +1,12 @@
 <?php
-  
-  namespace LibX\SimplePay\Request;
-  
-  use LibX\SimplePay\Request;
-  use LibX\SimplePay\User;
-  use LibX\SimplePay\Payment;
-  use LibX\SimplePay\Callback;
-  
+
+  namespace LibX\External\SimplePay\Request;
+
+  use LibX\External\SimplePay\Request;
+  use LibX\External\SimplePay\User;
+  use LibX\External\SimplePay\Payment;
+  use LibX\External\SimplePay\Callback;
+
   use LibX\Util\Uuid;
 
   /**
@@ -20,9 +20,9 @@
     protected $provider;
     protected $payment;
     protected $callback;
-    
+
     /**
-     * Construct a new TransactionRequest 
+     * Construct a new TransactionRequest
      *
      * @param User $user
      * @param Uuid $provider
@@ -37,7 +37,7 @@
       $this->setPayment($payment);
       $this->setCallback($callback);
     }
-    
+
     /**
      * Get the provider uuid of this TransactionRequest
      *
@@ -48,7 +48,7 @@
     {
       return $this->provider;
     }
-    
+
     /**
      * Set the provider uuid of this TransactionRequest
      *
@@ -59,7 +59,7 @@
     {
       $this->provider = $provider;
     }
-    
+
     /**
      * Get the payment of this TransactionRequest
      *
@@ -70,7 +70,7 @@
     {
       return $this->payment;
     }
-    
+
     /**
      * Set the payment of this TransactionRequest
      *
@@ -81,7 +81,7 @@
     {
       $this->payment = $payment;
     }
-    
+
     /**
      * Get the callback of this TransactionRequest
      *
@@ -92,7 +92,7 @@
     {
       return $this->callback;
     }
-    
+
     /**
      * Set the callback of this TransactionRequest
      *
