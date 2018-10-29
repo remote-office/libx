@@ -14,7 +14,7 @@
     protected $state;
     protected $municipality;
     protected $city;
-    protected $area;
+    protected $district;
     protected $neighbourhood;
     protected $street;
     protected $number;
@@ -94,19 +94,19 @@
       return !is_null($this->city);
     }
 
-    public function getArea()
+    public function getDistrict()
     {
-      return $this->area;
+      return $this->district;
     }
 
-    public function setArea($area)
+    public function setDistrict($district)
     {
-      $this->area = $area;
+      $this->district = $district;
     }
 
-    public function hasArea()
+    public function hasDistrict()
     {
-      return !is_null($this->area);
+      return !is_null($this->district);
     }
 
     public function getNeighbourhood()
@@ -221,8 +221,8 @@
       if($this->hasCity())
         $_address['city'] = $this->getCity();
 
-      if($this->hasArea())
-        $_address['area'] = $this->getArea();
+      if($this->hasDistrict())
+        $_address['district'] = $this->getDistrict();
 
       if($this->hasNeighbourhood())
         $_address['neighbourhood'] = $this->getNeighbourhood();
@@ -264,8 +264,8 @@
       if(isset($_address->city))
         $address->setCity($_address->city);
 
-      if(isset($_address->area))
-        $address->setArea($_address->area);
+      if(isset($_address->district))
+        $address->setDistrict($_address->district);
 
       if(isset($_address->neighbourhood))
         $address->setNeighbourhood($_address->neighbourhood);

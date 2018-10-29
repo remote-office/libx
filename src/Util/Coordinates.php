@@ -25,6 +25,16 @@
       return $this->getY();
     }
 
+    public static function fromStdClass($_coordinates)
+    {
+      $latitude = $_coordinates->latitude;
+      $longitude = $_coordinates->longitude;
+
+      $coordinates = new static($latitude, $longitude);
+
+      return $coordinates;
+    }
+
     public function toArray()
     {
       $_coordinates = [];
