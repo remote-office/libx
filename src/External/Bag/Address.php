@@ -14,7 +14,7 @@
     protected $stateCode;
     protected $municipalityCode;
     protected $cityCode;
-    protected $areaCode;
+    protected $districtCode;
     protected $neighbourhoodCode;
 
     protected $publicSpaceId;
@@ -86,19 +86,19 @@
       return !is_null($this->cityCode);
     }
 
-    public function getAreaCode()
+    public function getDistrictCode()
     {
-      return $this->areaCode;
+      return $this->districtCode;
     }
 
-    public function setAreaCode($areaCode)
+    public function setDistrictCode($districtCode)
     {
-      $this->areaCode = $areaCode;
+      $this->districtCode = $districtCode;
     }
 
-    public function hasAreaCode()
+    public function hasDistrictCode()
     {
-      return !is_null($this->areaCode);
+      return !is_null($this->districtCode);
     }
 
     public function getNeighbourhoodCode()

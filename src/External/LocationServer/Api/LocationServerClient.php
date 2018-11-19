@@ -109,7 +109,7 @@
         $address->setStateCode($document->provinciecode);
         $address->setMunicipalityCode($document->gemeentecode);
         $address->setCityCode($document->woonplaatscode);
-        $address->setAreaCode($document->wijkcode);
+        $address->setDistrictCode($document->wijkcode);
         $address->setNeighbourhoodCode($document->buurtcode);
         $address->setPublicSpaceId($document->openbareruimte_id);
         $address->setNumberIndicationId($document->nummeraanduiding_id);
@@ -124,7 +124,7 @@
       $address->setState($state);
       $address->setMunicipality($municipality);
       $address->setCity($city);
-      $address->setArea($area);
+      $address->setDistrict($area);
       $address->setNeighbourhood($neighbourhood);
       $address->setStreet($street);
       $address->setNumber($number);
