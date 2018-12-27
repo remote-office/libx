@@ -2,6 +2,8 @@
 
   namespace LibX\Util;
 
+  use StdClass;
+  
   /**
    * Class Address
    *

@@ -6,7 +6,11 @@
   use LibX\Dom\Document;
 
   use DOMNode;
-
+  use DOMNodeList;
+  
+  use Exception;
+  use InvalidArgumentException;
+  
   /**
    * Handler
    *
@@ -96,9 +100,9 @@
      * @param string $name
      * @return DOMNode
      */
-    protected function createNode($name)
+    protected function createNode($name, $value = null)
     {
-      $node = $this->document->createElement($name);
+      $node = $this->document->createElement($name, $value);
 
       return $node;
     }

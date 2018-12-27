@@ -2,6 +2,8 @@
 
   namespace LibX\Json\Api;
 
+  use StdClass;
+  
   /**
    * JSON API Client
    *

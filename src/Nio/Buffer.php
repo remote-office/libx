@@ -101,8 +101,4 @@
     }
   }
 
-  // Exception classes
-  class BufferUnderflowException extends \Exception{};
-  class BufferOverflowException extends \Exception{};
-
 ?>
