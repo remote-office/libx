@@ -1,20 +1,20 @@
 <?php
 
-  namespace LibX\Mail;
+  namespace LibX\Message\Mail;
 
   use LibX\Util\Uuid;
+  use LibX\Message\Message;
 
-  use LibX\Mail\Message\Content;
 
   use StdClass;
 
   /**
-   * Class Message
+   * Class Mail
    *
    * @author David Betgen <d.betgen@remote-office.nl>
    * @vesion 1.0
    */
-  class Message
+  class Mail extends Message
   {
     protected $uuid;
     protected $sender;
@@ -24,21 +24,12 @@
 
     public function __construct(Uuid $uuid, Address $sender, Address $recipient, $subject, Content $content)
     {
-      $this->setUuid($uuid);
+      parent::__construct($uuid, 'mail');
+
       $this->setSender($sender);
       $this->setRecipient($recipient);
       $this->setSubject($subject);
       $this->setContent($content);
-    }
-
-    public function getUuid()
-    {
-      return $this->uuid;
-    }
-
-    public function setUuid(Uuid $uuid)
-    {
-      $this->uuid = $uuid;
     }
 
     public function getSender()
@@ -85,6 +76,7 @@
     {
       $_message = [];
       $_message['uuid'] = $this->getUuid()->getValue();
+      $_message['class'] = $this->getClass();
       $_message['sender'] = $this->getSender()->toArray();
       $_message['recipient'] = $this->getRecipient()->toArray();
       $_message['subject'] = $this->getSubject();
@@ -95,14 +87,24 @@
 
     static public function fromStdClass(StdClass $_message)
     {
-      $uuid = new Uuid($data->Uuid);
-      $sender = Address::fromStdClass($data->Sender->Address);
-      $recipient = Address::fromStdClass($data->Recipient->Address);
-      $subject = $data->Subject;
-      $content = Content::fromStdClass($data->Content->Text);
+      $uuid = new Uuid($_message->uuid);
+      $sender = Address::fromStdClass($_message->sender);
+      $recipient = Address::fromStdClass($_message->recipient);
+      $subject = $_message->subject;
+      $content = Content::fromStdClass($_message->content);
 
       $message = new static($uuid, $sender, $recipient, $subject, $content);
 
       return $message;
+    }
+
+    /**
+     * QueueableInterface
+     *
+     * @return string
+     */
+    public function toJson()
+    {
+      return json_encode($this->toArray());
     }
   }

@@ -1,6 +1,6 @@
 <?php
 
-  namespace LibX\Mail\Message;
+  namespace LibX\Message\Mail;
 
   use StdClass;
 
