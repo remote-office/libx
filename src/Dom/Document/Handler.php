@@ -91,10 +91,10 @@
     }
 
     /**
-     * Get node
+     * Get nodelist
      *
      * @param string $xquery
-     * @return DOMNode
+     * @return DOMNodeList
      * @throws Exception
      */
     protected function getNodeList($xquery)
