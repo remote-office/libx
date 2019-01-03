@@ -91,6 +91,20 @@
     }
 
     /**
+     * Get node
+     *
+     * @param string $xquery
+     * @return DOMNode
+     * @throws Exception
+     */
+    protected function getNodeList($xquery)
+    {
+      $nodeList = $this->document->getXPath()->query($xquery, $this->node);
+
+      return $nodeList;
+    }
+
+    /**
      * Create a node
      *
      * @param string $name
