@@ -19,6 +19,24 @@
     {
       return array_pop($this->array);
     }
+
+    public function contains(Uuid $uuid)
+    {
+      $contains = false;
+
+      $uuids = clone($this);
+      $uuids->rewind();
+
+      while($uuids->valid() && !$contains)
+      {
+        if($uuids->current()->getValue() === $uuid->getValue())
+          $contains = true;
+
+        $uuids->next();
+      }
+
+      return $contains;
+    }
   }
 
 ?>
