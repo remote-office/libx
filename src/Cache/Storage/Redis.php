@@ -4,6 +4,9 @@
 
   class Redis implements StorageInterface
   {
+    protected $host;
+    protected $port;
+
     protected $redis;
 
     /**
@@ -12,12 +15,27 @@
      * @param void
      * @return Redis
      */
-    protected function __construct($host, $post)
+    public function __construct($host, $port)
     {
+      $this->host = $host;
+      $this->port = $port;
+
       // Create a new Redis client
       $this->redis = new Redis();
+    }
+
+    /**
+     * Connect to a redis server
+     *
+     * @param void
+     * @return void
+     * @throws \Exception
+     */
+    public function connect()
+    {
       // Connect to Redis server
-      $this->redis->connect($host, $post);
+      if($this->redis->connect($this->host, $this->port) === false)
+        throw new \Exception('Could not connect to redis server on host "' . $this->host . ':' . $this->port . '"');
     }
 
     /**
@@ -28,6 +46,9 @@
      */
     public function retrieve($key)
     {
+      if(!$this->redis->isConnected())
+        $this->connect();
+
       // Get value by key
       $value = $this->redis->get($key);
 
@@ -46,6 +67,9 @@
      */
     public function store($key, $value)
     {
+      if(!$this->redis->isConnected())
+        $this->connect();
+
       // Set key
       $this->redis->set($key, $value);
     }
@@ -58,6 +82,9 @@
      */
     public function remove($key)
     {
+      if(!$this->redis->isConnected())
+        $this->connect();
+
       // Delete key
       $this->redis->delete($key);
     }
@@ -70,6 +97,9 @@
      */
     public function has($key)
     {
+      if(!$this->redis->isConnected())
+        $this->connect();
+
       // Get value by key
       $value = $this->redis->get($key);
 

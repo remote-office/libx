@@ -38,7 +38,7 @@
       return $this->identifier;
     }
 
-    public function enqueue(QueueableInterface $queueable)
+    public function enqueue($queueable)
     {
       return $this->storage->enqueue($this, $queueable);
     }

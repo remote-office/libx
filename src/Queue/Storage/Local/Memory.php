@@ -10,7 +10,7 @@
   {
     protected $array = [];
 
-    public function enqueue(Queue $queue, QueueableInterface $queueable)
+    public function enqueue(Queue $queue, $queueable)
     {
       return array_push($this->array, $queueable);
     }

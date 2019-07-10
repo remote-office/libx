@@ -7,7 +7,7 @@
 
   interface StorageInterface
   {
-    public function enqueue(Queue $queue, QueueableInterface $queueable);
+    public function enqueue(Queue $queue, $queueable);
     public function dequeue(Queue $queue);
   }
 

@@ -37,6 +37,9 @@
       // Make the call
       $data = $this->call($request, $response);
 
+      if($data->response->numFound == 0)
+        throw new Exception('No document found');
+
       if($data->response->numFound > 1)
         throw new Exception('More then one document found');
 
@@ -45,7 +48,7 @@
 
       // Check type
       if($document->type !== 'adres')
-        throw new Exception('Invalid document type found (' . $doc->type . ')');
+        throw new Exception('Invalid document type found (' . $document->type . ')');
 
       // Get address id
       $id = $document->id;
@@ -72,6 +75,9 @@
 
       // Make the call
       $data = $this->call($request, $response);
+
+      if($data->response->numFound == 0)
+        throw new Exception('No document found');
 
       if($data->response->numFound > 1)
         throw new Exception('More then one document found');

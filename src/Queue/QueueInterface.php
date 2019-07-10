@@ -4,7 +4,7 @@
 
   interface QueueInterface
   {
-    public function enqueue(QueueableInterface $queueable);
+    public function enqueue($queueable);
     public function dequeue();
   }
 
