@@ -16,12 +16,27 @@
      */
     public function __construct(StorageInterface $storage)
     {
-      $this->setStorage($storage);
+      $this->storage = $storage;
     }
 
-    public function setStorage(StorageInterface $storage)
+    public function retrieve($key)
     {
-      $this->storage = $storage;
+      return $this->storage->retrieve($key);
+    }
+
+    public function store($key, $value)
+    {
+      return $this->storage->store($key, $value);
+    }
+
+    public function remove($key)
+    {
+      return $this->storage->remove($key);
+    }
+
+    public function has($key)
+    {
+      return $this->storage->has($key);
     }
   }
 

@@ -17,7 +17,7 @@
       $this->mongo = $mongo;
     }
 
-    public function enqueue(Queue $queue, QueueableInterface $queueable)
+    public function enqueue(Queue $queue, $queueable)
     {
       $identifier = $queue->identify();
 
@@ -25,7 +25,7 @@
 
       $document = array();
       $document['created'] = new \MongoDB\BSON\UTCDateTime();
-      $document['data'] = $queueable->toJson();
+      $document['data'] = $queueable;
 
       $result = $collection->insertOne($document);
 
