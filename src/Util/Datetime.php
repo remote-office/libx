@@ -1,7 +1,7 @@
 <?php
 
   namespace LibX\Util;
-  
+
   /**
    * Datetime
    *
@@ -14,7 +14,7 @@
   {
     protected $date;
     protected $time;
-    
+
     /**
      * Construct a new Datetime
      *
@@ -27,7 +27,7 @@
       {
         // Break into parts
         $parts = preg_split('/[T ]/', $datetime);
-        
+
         $this->date = new Date($parts[0]);
         $this->time = new Time($parts[1]);
       }
@@ -37,7 +37,7 @@
         $this->time = new Time();
       }
     }
-    
+
     /**
      * Get the value of this Datetime as an ISO string
      *
@@ -48,7 +48,7 @@
     {
       return $this->date->getValue() . 'T' . $this->time->getValue();
     }
-    
+
     /**
      * Generate a Datetime
      *
@@ -58,10 +58,10 @@
     static public function generate($datetime = null)
     {
       $datetime = new static($datetime);
-      
+
       return $datetime->getValue();
     }
-    
+
     /**
      * Get the Date of this Datetime
      *
@@ -72,7 +72,7 @@
     {
       return $this->date;
     }
-    
+
     /**
      * Get the Time of this Datetime
      *
@@ -83,7 +83,7 @@
     {
       return $this->time;
     }
-    
+
     /**
      * Get the timestamp of this Datetime
      *
@@ -94,7 +94,7 @@
     {
       return strtotime($this->getValue());
     }
-    
+
     /**
      * Validate if a string is a datetime
      *
@@ -105,65 +105,27 @@
     {
       // Break into parts
       $parts = preg_split('/[T ]/', $datetime);
-      
+
       return Date::validate($parts[0]) && Time::validate($parts[1]);
     }
   }
-  
-  /**
-   * DatetimeWithTimezone
-   *
-   * @author David Betgen <d.betgen@remote-office.nl>
-   * @version 1.0
-   */
-  class DatetimeWithTimezone extends Datetime
-  {
-    /**
-     * Construct a new DatetimeWithTimezone
-     *
-     * @param string $datetime
-     * @return DatetimeWithTimezone
-     */
-    public function __construct($datetime = null)
-    {
-      parent::__construct($datetime);
-    }
-    
-    /**
-     * Get the value of this DatetimeWithTimezone as an ISO string
-     *
-     * @param void
-     * @return string
-     */
-    public function getValue()
-    {
-    }
-    
-    /**
-     * Validate if a string is a datetime with timezone
-     *
-     * @param string $time
-     * @return boolean true if string is a datetime with timezone, false otherwise
-     */
-    static public function validate($datetime)
-    {
-    }
-  }
-  
+
+
+
   class DatetimeRange
   {
     public function __construct(Datetime $start, Datetime $end)
     {
     }
   }
-  
+
   class DateRange
   {
     public function __construct(Date $start, Date $end)
     {
     }
   }
-  
+
   class TimeRange
   {
     public function __construct(Time $start, Time $end)
