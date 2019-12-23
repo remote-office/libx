@@ -3,7 +3,7 @@
   namespace LibX\Http\Uri;
 
   use InvalidArgumentException;
-  
+
   class Uri implements UriInterface
   {
     protected $scheme;   // Uri scheme.
@@ -60,16 +60,34 @@
       return new static($scheme, $host, $port, $path, $query, $fragment, $user, $pass, $uri);
     }
 
+    public function getScheme()
+    {
+      return $this->scheme;
+    }
+
+    public function getHost()
+    {
+      return $this->host;
+    }
+
+    public function getPort()
+    {
+      return $this->port;
+    }
+
+    public function hasPort()
+    {
+      return !is_null($this->port);
+    }
+
     public function getPath()
     {
       return $this->path;
     }
 
-    protected function parseUri($uri)
+    public function getQuery()
     {
-      // @TODO: Parse uri
-
-      $this->uri = $uri;
+      return $this->query;
     }
 
     public function setQuery($query)
@@ -85,12 +103,47 @@
       $this->query .= http_build_query(array($key => $value), '', '&');
     }
 
+    protected function parseUri($uri)
+    {
+      // @TODO: Parse uri
+
+      $this->uri = $uri;
+    }
+
+
     public function getRelativeUri()
     {
-      // @TODO: Return relative uri
+      $uri = '';
+      $uri .= $this->path;
 
-      return $this->uri;
+      return $uri;
     }
+
+    public function getRawAuthority()
+    {
+      $authority = $this->host;
+
+      if($this->hasPort())
+        $authority .= ':' . $this->port;
+
+      return $authority;
+    }
+
+    public function getAbsoluteUri()
+    {
+      $uri = $this->scheme . '://' . $this->getRawAuthority();
+
+      $uri .= $this->path;
+
+      if(!empty($this->query))
+        $uri .= '?' . $this->query;
+
+      if(!empty($this->fragment))
+        $uri .= '#' . $this->fragment;
+
+      return $uri;
+    }
+
 
     /**
      * Uses protected user info by default as per rfc3986-3.2.1
