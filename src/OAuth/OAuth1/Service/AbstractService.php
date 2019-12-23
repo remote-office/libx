@@ -8,6 +8,11 @@
   use LibX\OAuth\Storage\StorageInterface;
   use LibX\OAuth\Service\ServiceInterface;
 
+  use LibX\Http\Uri\Uri;
+  use LibX\Http\Uri\UriInterface;
+
+  use LibX\Net\Rest\Request;
+
   /**
    * Class AbstractService
    *
@@ -19,12 +24,25 @@
     protected $credentials;
     protected $storage;
 
+    /**
+     * Construct an AbstractService
+     *
+     * @param CredentialsInterface $credentials
+     * @param StorageInterface $storage
+     * @return AbstractService
+     */
     public function __construct(CredentialsInterface $credentials, StorageInterface $storage)
     {
       $this->credentials = $credentials;
       $this->storage = $storage;
     }
 
+    /**
+     * Request an request token from OAuth service
+     *
+     * @param vooid
+     * @return \LibX\OAuth\OAuth1\Service\TokenInterface
+     */
     public function getRequestToken()
     {
       // Set authorization header
@@ -49,6 +67,12 @@
       return $token;
     }
 
+    /**
+     * Request an access token from OAuth service
+     *
+     * @param string $verifier
+     * @return \LibX\OAuth\OAuth1\Service\TokenInterface
+     */
     public function getAccessToken($verifier)
     {
       // Get request token
@@ -79,23 +103,33 @@
       return $token;
     }
 
+    public function sign(Request $request)
+    {
+      // Get access token
+      $token = $this->storage->retrieveAccessToken($this->service());
+
+      $uri = Uri::createFromString($request->getUrl());
+
+      // Get authorization parameters
+      $parameters = $this->getAuthorizationParametersForApiRequest($request->getMethod(), $uri, $token, $request->getParameters());
+
+      // Set signed parameters
+      $request->setParameters($parameters);
+
+      return $request;
+    }
 
     public function request($path, $method = 'GET', $body = null, array $extraHeaders = array())
     {
-      $uri = $path;
+      $uri = Uri::createFromString($path);
 
       $token = $this->storage->retrieveAccessToken($this->service());
 
       // Get authorization parameters
       $parameters = $this->getAuthorizationParametersForApiRequest('GET', $uri, $token, []);
 
-      $scheme = parse_url($uri, PHP_URL_SCHEME);
-      $host = parse_url($uri, PHP_URL_HOST);
-      $path = parse_url($uri, PHP_URL_PATH);
-      $query = parse_url($uri, PHP_URL_QUERY);
-
       // Parse URL
-      parse_str($query, $parsed);
+      parse_str($uri->getQuery(), $parsed);
 
       if(is_array($parsed))
         $parameters = array_merge($parameters, $parsed);
@@ -103,35 +137,39 @@
       // Create a REST client
       $client = new \LibX\Net\Rest\Client();
 
-      $request = new \LibX\Net\Rest\Request($scheme . '://' . $host . $path, \LibX\Net\Rest\Request::REQUEST_METHOD_GET);
+      $request = new \LibX\Net\Rest\Request($uri->getScheme() . '://' . $uri->getHost() . $uri->getPath(), \LibX\Net\Rest\Request::REQUEST_METHOD_GET);
       $request->setParameters($parameters);
 
       $response = new \LibX\Net\Rest\Response();
 
       $client->execute($request, $response);
 
+      //print_r($request);
+      //print_r($response);
+
       $data = $response->getData();
 
       return $data;
     }
 
+    /**
+     * Returns the authorization API endpoint.
+     *
+     * @param array $additionalParameters
+     * @return UriInterface
+     */
     public function getAuthorizationUri(array $additionalParameters = array())
     {
       // Build the url
-      $url = $this->getAuthorizationEndpoint();
+      $uri = $this->getAuthorizationEndpoint();
 
-      /*foreach($additionalParameters as $key => $val)
-      {
-        $url->addToQuery($key, $val);
-      }*/
+      foreach($additionalParameters as $key => $val)
+        $uri->addToQuery($key, $val);
 
-      if(count($additionalParameters) > 0)
-        $url .= '?' . http_build_query($additionalParameters);
-
-      return $url;
+      return $uri;
     }
 
-    protected function getAuthorizationParametersForApiRequest($method = 'POST', $uri, Token $token, $additionalParameters = null)
+    protected function getAuthorizationParametersForApiRequest($method = 'POST', UriInterface $uri, Token $token, $additionalParameters = null)
     {
       // Get OAuth parameters
       $parameters = $this->getOAuthParameters();
@@ -151,7 +189,7 @@
       return $parameters;
     }
 
-    protected function getAuthorizationHeaderForApiRequest($method = 'POST', $uri, Token $token, $additionalParameters = null)
+    protected function getAuthorizationHeaderForApiRequest($method = 'POST', UriInterface $uri, Token $token, $additionalParameters = null)
     {
       // Get OAuth parameters
       $parameters = $this->getAuthorizationParametersForApiRequest($method, $uri, $token, $additionalParameters);
@@ -238,19 +276,18 @@
     }
 
 
-    private function buildSignature($uri, array $parameters, $method = 'POST', $tokenSecret = null)
+    private function buildSignature(UriInterface $uri, array $parameters, $method = 'POST', $tokenSecret = null)
     {
-      $query = parse_url($uri, PHP_URL_QUERY);
-
-      // Parse URL
-      parse_str($query, $parsed);
+      // Parse URL query
+      parse_str($uri->getQuery(), $parsed);
 
       foreach(array_merge($parsed, $parameters) as $key => $value)
         $signatureData[rawurlencode($key)] = rawurlencode($value);
 
       ksort($signatureData);
 
-      $baseUri = $uri;
+      $baseUri = $uri->getScheme() . '://' . $uri->getRawAuthority();
+      $baseUri .= $uri->getPath();
 
       $baseString = strtoupper($method) . '&';
       $baseString .= rawurlencode($baseUri) . '&';

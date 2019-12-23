@@ -18,6 +18,10 @@
      */
     public function __construct($datetime = null)
     {
+      // @todo: ADD REAL TIMEZONE CODE
+      if(!is_null($datetime))
+        $datetime = date('Y-m-d H:i:s', strtotime($datetime));
+
       parent::__construct($datetime);
     }
 
