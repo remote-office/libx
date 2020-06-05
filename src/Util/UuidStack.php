@@ -20,6 +20,7 @@
       return array_pop($this->array);
     }
 
+
     public function contains(Uuid $uuid)
     {
       $contains = false;
