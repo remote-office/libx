@@ -26,7 +26,7 @@
     public function suggest($zipcode, $number, $addition = null)
     {
       // Concat url
-      $url = self::API_URL . '/suggest?q=' . $zipcode . '-' . $number . (!empty($addition) ? '-' . $addition : '');
+      $url = self::API_URL . '/suggest?q=' . $zipcode . '+' . $number . (!empty($addition) ? '+' . $addition : '');
 
       // Create a REST request
       $request = new \LibX\Net\Rest\Request($url, \LibX\Net\Rest\Request::REQUEST_METHOD_GET);
@@ -41,10 +41,29 @@
         throw new Exception('No document found');
 
       if($data->response->numFound > 1)
-        throw new Exception('More then one document found');
+      {
+        $document = null;
+        $score = 0;
 
-      // Get document
-      $document = array_pop($data->response->docs);
+        foreach($data->response->docs as $doc)
+        {
+          if($doc->score > $score && $doc->type === 'adres')
+          {
+            // Update score
+            $score = $doc->score;
+
+            $document = $doc;
+          }
+        }
+      }
+      else
+      {
+        // Get document
+        $document = array_pop($data->response->docs);
+      }
+
+      //if($data->response->numFound > 1)
+        //throw new Exception('More then one document found');
 
       // Check type
       if($document->type !== 'adres')
@@ -54,6 +73,7 @@
       $id = $document->id;
 
       return $id;
+
     }
 
     /**
