@@ -174,7 +174,7 @@
      */
     public function header($handle, $header)
     {
-      if(!is_resource($handle))
+      if(!is_object($handle))
         throw new Exception(__METHOD__ . '; cURL handle is not valid');
 
       $length = strlen($header);
@@ -199,7 +199,7 @@
      */
     public function write($handle, $data)
     {
-      if(!is_resource($handle))
+      if(!is_object($handle))
         throw new Exception(__METHOD__ . '; cURL handle is not valid');
 
       $length = strlen($data);
@@ -222,7 +222,7 @@
      */
     public function read($handle, $fd, $length)
     {
-      if(!is_resource($handle))
+      if(!is_object($handle))
         throw new Exception(__METHOD__ . '; cURL handle is not valid');
 
       $data = fread($fd, $length);
