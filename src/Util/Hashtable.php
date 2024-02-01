@@ -44,6 +44,17 @@
        if(isset($this->array[$key]))
         unset($this->array[$key]);
     }
+
+    /**
+     * Clear the table
+     *
+     * @param void
+     * @return void
+     */
+    public function clear()
+    {
+      $this->array = [];
+    }
   }
 
 ?>
